@@ -5,10 +5,18 @@
         <h4 class="card-title">Striped Progress bar</h4>
         <div class="progress m-t-20">
           <div
-            class="progress-bar bg-prumary progress-bar-striped active"
+            class="progress-bar bg-primary progress-bar-striped active"
             style="height: 10px"
-            [style.width]="getPercentage"
             role="progressbar"
+            [style.width]="getPercentageOne()"
+          ></div>
+        </div>
+        <div class="progress m-t-20">
+          <div
+            class="progress-bar bg-info progress-bar-striped active"
+            style="height: 10px"
+            role="progressbar"
+            [style.width]="getPercentageTwo()"
           ></div>
         </div>
       </div>
@@ -19,40 +27,22 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <div class="input-group">
-          <span class="input-group-btn">
-            <button
-              class="btn btn-primary"
-              type="button"
-              (click)="changeValue(-5)"
-            >
-              <i class="fa fa-minus"></i>
-            </button>
-          </span>
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Progress value"
-            min="0"
-            max="100"
-            [(ngModel)]="progress"
-          />
-          <span class="input-group-btn">
-            <button
-              class="btn btn-primary"
-              type="button"
-              (click)="changeValue(5)"
-            >
-              <i class="fa fa-plus"></i>
-            </button>
-          </span>
-        </div>
+        <app-incrementer
+          (outputValue)="progressOne = $event"
+          [progressValue]="progressOne"
+        ></app-incrementer>
       </div>
     </div>
   </div>
   <div class="col-6">
     <div class="card">
-      <div class="card-body">2</div>
+      <div class="card-body">
+        <app-incrementer
+          (outputValue)="progressTwo = $event"
+          [progressValue]="progressTwo"
+          [btnClass]="'btn-info'"
+        ></app-incrementer>
+      </div>
     </div>
   </div>
 </div>
